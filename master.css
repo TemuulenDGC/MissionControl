@@ -1,6 +1,6 @@
 :root {
     --neon: #00ff41;
-    --dark: #000000;
+    --dark: #000000; 
     --panel-border: #1a1a1a;
     --glow: rgba(0, 255, 65, 0.3);
 }
