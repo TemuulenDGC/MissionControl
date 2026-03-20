@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMUULEN_DGC // MISSION_CONTROL</title>
+    <link rel="stylesheet" href="master.css">
+</head>
+<body class="mission-bg">
+    <div class="master-grid">
+        <div class="panel avalon-frame">
+            <div class="panel-header">NODE_01 // AVALON_SYSTEM</div>
+            <iframe src="https://temuulendgc.github.io/avalon/" frameborder="0"></iframe>
+        </div>
+
+        <div class="right-stack">
+            <div class="panel dotmatrix-frame">
+                <div class="panel-header">NODE_02 // VISUAL_FORENSICS</div>
+                <iframe src="https://temuulendgc.github.io/Dotmatrix/" frameborder="0"></iframe>
+            </div>
+
+            <div class="panel cipher-frame">
+                <div class="panel-header">NODE_03 // CRYPTO_STREAM</div>
+                <iframe src="https://temuulendgc.github.io/cipherstream/" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
