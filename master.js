@@ -20,8 +20,25 @@ fsBtn.addEventListener('click', () => {
     }
 });
 
-document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) fsBtn.innerText = "GO_FULLSCREEN";
+// --- NON-DESTRUCTIVE FULLSCREEN & PERSISTENCE ---
+fsBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen()
+            .then(() => {
+                fsBtn.innerText = "EXIT_FULLSCREEN";
+                
+                // SOFT NUDGE: Change a CSS property instead of reloading the SRC
+                // This keeps the uploaded video/data alive while waking the browser
+                document.querySelectorAll('iframe').forEach(f => {
+                    f.style.opacity = "0.99"; 
+                    setTimeout(() => { f.style.opacity = "1"; }, 50);
+                });
+            })
+            .catch(err => console.warn(`FS_ERR: ${err.message}`));
+    } else {
+        document.exitFullscreen();
+        fsBtn.innerText = "GO_FULLSCREEN";
+    }
 });
 
 // --- TACTICAL BROADCAST UPDATES ---
