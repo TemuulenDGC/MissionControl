@@ -1,42 +1,43 @@
 const fsBtn = document.getElementById('fullscreenBtn');
 const tickerFeed = document.getElementById('tickerFeed');
 
-// --- FULLSCREEN LOGIC ---
+// --- IMPROVED FULLSCREEN & KEEP-ALIVE ---
 fsBtn.addEventListener('click', () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen()
             .then(() => {
                 fsBtn.innerText = "EXIT_FULLSCREEN";
+                // NUDGE: Briefly reset iframe src to force browser to keep JS/CSS active
+                document.querySelectorAll('iframe').forEach(f => {
+                    const currentSrc = f.src;
+                    f.src = currentSrc; 
+                });
             })
-            .catch((err) => {
-                console.warn(`Fullscreen error: ${err.message}`);
-            });
+            .catch(err => console.warn(`FS_ERR: ${err.message}`));
     } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-            fsBtn.innerText = "GO_FULLSCREEN";
-        }
-    }
-});
-
-// Update button if user exits via 'Esc' key
-document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) {
+        document.exitFullscreen();
         fsBtn.innerText = "GO_FULLSCREEN";
     }
 });
 
-// --- TICKER FEED UPDATES ---
-const tacticalAlerts = [
-    "UNAUTHORIZED UPLINK DETECTED in SECTOR_04 // ",
-    "ENCRYPTION KEY ROTATION COMPLETE // ",
-    "PACKET ANALYSIS: 0 VULNERABILITIES // ",
-    "UPLINK_STABILITY: 99.9% // ",
-    "NODE_01: JUNIOR SERGEANT AUTHENTICATED // ",
-    "LATENCY STABLE: 12ms // "
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) fsBtn.innerText = "GO_FULLSCREEN";
+});
+
+// --- TACTICAL BROADCAST UPDATES ---
+const alerts = [
+    "SECTOR_04: ENCRYPTION STABLE // ",
+    "PACKET_LOSS: 0% // ",
+    "NODE_02_SYNC: COMPLETED // ",
+    "THREAT_LEVEL: ALPHA_LOW // ",
+    "JUNIOR_SERGEANT_SESSION: ACTIVE // ",
+    "LATENCY: 8ms // ",
+    "CORE_TEMP: 38C // "
 ];
 
 setInterval(() => {
-    const randomAlert = tacticalAlerts[Math.floor(Math.random() * tacticalAlerts.length)];
-    tickerFeed.innerHTML += ` <span style="color: #fff">|</span> ${randomAlert}`;
-}, 8000);
+    const nextAlert = alerts[Math.floor(Math.random() * alerts.length)];
+    tickerFeed.innerHTML += ` <span style="color: #444">|</span> ${nextAlert}`;
+}, 6000);
+
+console.log("%c [AVALON_OS] MISSION_CONTROL_READY ", "color: #00ff41; font-weight: bold; background: #000;");
