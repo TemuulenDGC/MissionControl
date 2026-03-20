@@ -19,3 +19,23 @@ setInterval(() => {
 
 // Professional Console Log for the browser inspector
 console.log("%c MISSION_CONTROL INITIALIZED ", "background: #00ff41; color: #000; font-weight: bold;");
+const fsBtn = document.getElementById('fullscreenBtn');
+
+fsBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+        fsBtn.innerText = "EXIT_FULLSCREEN";
+    } else {
+        document.exitFullscreen();
+        fsBtn.innerText = "GO_FULLSCREEN";
+    }
+});
+
+// Update button text if user exits fullscreen using 'Esc' key
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        fsBtn.innerText = "GO_FULLSCREEN";
+    }
+});
