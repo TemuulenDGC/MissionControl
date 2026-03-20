@@ -13,10 +13,35 @@ body, html {
     color: var(--neon);
 }
 
+/* FULLSCREEN TOGGLE STYLING */
+.fs-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999; 
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--neon);
+    border: 1px solid var(--neon);
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.2s ease;
+}
+
+.fs-button:hover {
+    background: var(--neon);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+}
+
 .master-grid {
     display: grid;
-    grid-template-columns: 45% 55%; /* Splits screen: Left 45%, Right 55% */
-    height: calc(100vh - 30px); /* Leaves room for the ticker */
+    grid-template-columns: 45% 55%;
+    height: calc(100vh - 30px);
     gap: 8px;
     padding: 8px;
     box-sizing: border-box;
@@ -24,7 +49,7 @@ body, html {
 
 .right-stack {
     display: grid;
-    grid-template-rows: 1fr 1fr; /* Splits right column into two equal halves */
+    grid-template-rows: 1fr 1fr;
     gap: 8px;
 }
 
@@ -33,17 +58,16 @@ body, html {
     flex-direction: column;
     border: 1px solid var(--panel-border);
     background: #050505;
-    transition: 0.3s ease;
+    overflow: hidden;
 }
 
 .panel:hover {
     border-color: var(--neon);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
 }
 
 .panel-header {
     background: #0a0a0a;
-    color: #555;
+    color: #444;
     font-size: 10px;
     padding: 6px 12px;
     text-transform: uppercase;
@@ -62,7 +86,7 @@ iframe {
     border: none;
 }
 
-/* GLOBAL TICKER STYLING */
+/* TICKER */
 .global-ticker {
     position: fixed;
     bottom: 0;
@@ -92,7 +116,7 @@ iframe {
 .ticker-move {
     display: inline-block;
     white-space: nowrap;
-    animation: tickerLoop 40s linear infinite;
+    animation: tickerLoop 45s linear infinite;
     padding-left: 100%;
     font-size: 12px;
 }
@@ -100,33 +124,4 @@ iframe {
 @keyframes tickerLoop {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-100%, 0, 0); }
-}
-.fs-button {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 1000;
-    background: transparent;
-    color: var(--neon);
-    border: 1px solid var(--neon);
-    padding: 5px 10px;
-    font-family: inherit;
-    font-size: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-.fs-button:hover {
-    background: var(--neon);
-    color: #000;
-    box-shadow: 0 0 15px var(--neon);
-}
-
-/* Hide button when already in fullscreen for a cleaner look */
-:fullscreen .fs-button {
-    opacity: 0.2;
-}
-:fullscreen .fs-button:hover {
-    opacity: 1;
 }
