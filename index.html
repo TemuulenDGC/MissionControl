@@ -5,25 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEMUULEN_DGC // MISSION_CONTROL</title>
     <link rel="stylesheet" href="master.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="mission-bg">
+<body>
     <div class="master-grid">
-        <div class="panel avalon-frame">
-            <div class="panel-header">NODE_01 // AVALON_SYSTEM</div>
+        
+        <section class="panel avalon-frame">
+            <div class="panel-header">NODE_01 // AVALON_SYSTEM_OS</div>
             <iframe src="https://temuulendgc.github.io/avalon/" frameborder="0"></iframe>
-        </div>
+        </section>
 
         <div class="right-stack">
-            <div class="panel dotmatrix-frame">
+            <section class="panel dotmatrix-frame">
                 <div class="panel-header">NODE_02 // VISUAL_FORENSICS</div>
                 <iframe src="https://temuulendgc.github.io/Dotmatrix/" frameborder="0"></iframe>
-            </div>
+            </section>
 
-            <div class="panel cipher-frame">
+            <section class="panel cipher-frame">
                 <div class="panel-header">NODE_03 // CRYPTO_STREAM</div>
                 <iframe src="https://temuulendgc.github.io/cipherstream/" frameborder="0"></iframe>
-            </div>
+            </section>
         </div>
     </div>
+
+    <footer class="global-ticker">
+        <div class="ticker-label">SYSTEM_BROADCAST:</div>
+        <div class="ticker-wrap">
+            <div class="ticker-move" id="tickerFeed">
+                CONNECTING TO GLOBAL NODES... [OK] // MONITORING TRAFFIC... [OK] // ENCRYPTION LEVEL: RSA_4096 // NO THREATS DETECTED // STANDBY FOR INCOMING DATA... 
+            </div>
+        </div>
+    </footer>
+
+    <script src="master.js"></script>
 </body>
 </html>
