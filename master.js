@@ -3,7 +3,7 @@ const tickerFeed = document.getElementById('tickerFeed');
 
 // --- IMPROVED FULLSCREEN & KEEP-ALIVE ---
 fsBtn.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
+    if (!document.fullscreenElement) { 
         document.documentElement.requestFullscreen()
             .then(() => {
                 fsBtn.innerText = "EXIT_FULLSCREEN";
